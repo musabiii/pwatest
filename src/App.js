@@ -1,23 +1,26 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from "react";
+import "./App.css";
+import Header from "./components/header";
+import One from "./components/one";
+import Two from "./components/two";
 
 function App() {
+  const [page, setPage] = useState(<One />);
+
+  const changePage = (p) => {
+    if (p ===1) {
+      setPage(<One/>)
+    }
+
+    if (p ===2) {
+      setPage(<Two/>)
+    }
+  };
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Header changePage = {changePage}/>
+      {page}
     </div>
   );
 }
